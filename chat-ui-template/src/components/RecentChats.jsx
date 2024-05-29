@@ -227,10 +227,10 @@ function RecentChats() {
 
   function fetchChatHistory() {
     setLoadingHistory(true);
-    axios.get("http://localhost:8880/api/v1/chats/").then((res) => {
-      setFullHistory(() => setFullHistory(res.data.data.chatHistory));
-      setLoadingHistory(false);
-    });
+    // axios.get("http://localhost:8880/api/v1/chats/").then((res) => {
+    //   setFullHistory(() => setFullHistory(res.data.data.chatHistory));
+    //   setLoadingHistory(false);
+    // });
   }
   //   const onClick = useCallback(
   //     (e: React.MouseEvent) => {
