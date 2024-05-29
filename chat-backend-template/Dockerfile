@@ -23,7 +23,7 @@ COPY . .
 RUN useradd -m appuser
 USER appuser
 
-EXPOSE 5000
+EXPOSE 8081
 
 # Set the entrypoint and command to run the app
 ENTRYPOINT [ "/venv/bin/python" ]
