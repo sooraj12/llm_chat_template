@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     path: "/new/:id",
     element: <ChatPage />,
   },
-]);
+],{ basename: "/chat" });
 
 function App() {
   return (
