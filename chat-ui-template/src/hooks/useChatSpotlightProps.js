@@ -18,7 +18,7 @@ export function useChatSpotlightProps() {
   //     return chat.searchChats(query)
   //         .map((result) => ({
   //             ...result,
-  //             onTrigger: () => navigate(`/chat/${result.chatID}${result.messageID ? `#msg-${result.messageID}` : ''}`),
+  //             onTrigger: () => navigate(`/new/${result.chatID}${result.messageID ? `#msg-${result.messageID}` : ''}`),
   //         }))
   // }, [chat, navigate, version]);
 

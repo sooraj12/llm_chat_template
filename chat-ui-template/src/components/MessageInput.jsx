@@ -61,7 +61,7 @@ function MessageInput(props) {
     const chatId = activeId ? activeId : uuidv4();
 
     if (!location.pathname.includes(chatId)) {
-      navigate("/chat/" + chatId);
+      navigate("/new/" + chatId);
     }
     setMessage("");
 

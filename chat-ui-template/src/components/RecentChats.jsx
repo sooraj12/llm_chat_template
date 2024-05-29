@@ -172,7 +172,7 @@ function ChatListItem({ chat, onClick, selected }) {
   //   }, []);
   return (
     <ChatListItemLink
-      to={"/chat/" + c.chatID}
+      to={"/new/" + c.chatID}
       onClick={onClick}
       data-chat-id={c.chatID}
       className={selected ? "selected" : ""}

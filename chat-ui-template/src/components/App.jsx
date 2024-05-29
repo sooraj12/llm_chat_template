@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     element: <LandingPage landing={true} />,
   },
   {
-    path: "/chat/:id",
+    path: "/new/:id",
     element: <ChatPage />,
   },
 ]);
