@@ -6,7 +6,11 @@ from fastapi.responses import StreamingResponse
 
 from pydantic import BaseModel
 
-llm = ChatGroq(temperature=0, model="llama3-8b-8192")
+llm = ChatGroq(
+        temperature=0, 
+        model="llama3-8b-8192", 
+        groq_api_key= "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"
+    )
 
 origins = ["*"]
 
