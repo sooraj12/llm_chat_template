@@ -1,4 +1,4 @@
-FROM python:3.9-slim-buster AS builder
+FROM python:3.11-alpine3.19 AS builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ ENV PATH="/venv/bin:$PATH"
 RUN pip install --upgrade pip \
     && pip install -r requirements.txt
 
-FROM python:3.9-slim-buster
+FROM python:3.11-alpine3.19
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1

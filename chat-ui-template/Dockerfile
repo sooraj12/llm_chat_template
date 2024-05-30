@@ -1,4 +1,4 @@
-FROM node:16-alpine as builder
+FROM node:18-alpine as builder
 
 ENV NODE_ROOT /usr/src/app/
 RUN mkdir -p $NODE_ROOT
@@ -10,7 +10,7 @@ RUN npm install --production
 COPY . .
 RUN npm run build
 
-FROM nginx:alpine
+FROM nginx:1.25.5-alpine
 
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html/chat
 
