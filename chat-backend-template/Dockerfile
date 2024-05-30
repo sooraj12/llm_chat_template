@@ -20,8 +20,7 @@ WORKDIR /app
 COPY --from=builder /venv /venv
 COPY . .
 
-RUN adduser -s appuser
-USER appuser
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 EXPOSE 8081
 
