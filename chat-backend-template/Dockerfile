@@ -1,4 +1,4 @@
-FROM python:3.11-alpine3.19 AS builder
+FROM python:3.11-alpine AS builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ ENV PATH="/venv/bin:$PATH"
 RUN pip install --upgrade pip \
     && pip install -r requirements.txt
 
-FROM python:3.11-alpine3.19
+FROM python:3.11-alpine
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -20,7 +20,7 @@ WORKDIR /app
 COPY --from=builder /venv /venv
 COPY . .
 
-RUN useradd -m appuser
+RUN adduser -m appuser
 USER appuser
 
 EXPOSE 8081
