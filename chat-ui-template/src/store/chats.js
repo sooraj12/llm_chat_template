@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from "uuid";
-import { ChatManager } from "../core/chatManager";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 
 const chatsStore = (set, get) => ({
@@ -16,7 +15,6 @@ const chatsStore = (set, get) => ({
     history: [],
     activeId: "",
     generating: false,
-    chatManager: new ChatManager(),
 
     setMessage: (msg) => {
       set((state) => {
