@@ -3,7 +3,6 @@ import { Button, CopyButton, Loader, Textarea } from "@mantine/core";
 
 import { Markdown } from "./Markdown";
 import { useCallback, useMemo, useState } from "react";
-import { useOption } from "../hooks";
 
 // hide for everyone but screen readers
 const SROnly = styled.span`
@@ -227,8 +226,6 @@ function Message({ message, last }) {
   const [editing, setEditing] = useState(false);
   const [content, setContent] = useState("");
 
-  const [katex] = useOption("markdown", "katex");
-
   const getRoleName = useCallback((role) => {
     switch (role) {
       case "user":
@@ -300,7 +297,7 @@ function Message({ message, last }) {
           {!editing && (
             <Markdown
               content={message.content}
-              katex={katex}
+              katex={true}
               className={"content content-" + message.id}
             />
           )}

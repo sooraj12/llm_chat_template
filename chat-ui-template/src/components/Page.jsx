@@ -1,10 +1,6 @@
 import styled from "@emotion/styled";
-import { SpotlightProvider } from "@mantine/spotlight";
 import { Header } from "./Header";
 import { MessageInput } from "./MessageInput";
-import { SettingsDrawer } from "./SettingsDrawer";
-import { Sidebar } from "./Sidebar";
-import { useChatSpotlightProps } from "../hooks";
 
 const Container = styled.div`
   position: absolute;
@@ -66,21 +62,15 @@ const Main = styled.div`
 `;
 
 function Page({ id, headerProps, children }) {
-  const spotlightProps = useChatSpotlightProps();
-
   return (
-    <SpotlightProvider {...spotlightProps}>
-      <Container>
-        <Sidebar />
-        <Main key={id}>
-          <Header title={headerProps?.title} />
-          {children}
+    <Container>
+      <Main key={id}>
+        <Header title={headerProps?.title} />
+        {children}
 
-          <MessageInput key={1} />
-          <SettingsDrawer />
-        </Main>
-      </Container>
-    </SpotlightProvider>
+        <MessageInput key={1} />
+      </Main>
+    </Container>
   );
 }
 

@@ -3,7 +3,6 @@ import { Button, ActionIcon, Textarea, Loader } from "@mantine/core";
 import { getHotkeyHandler, useHotkeys, useMediaQuery } from "@mantine/hooks";
 import { useCallback, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useOption } from "../hooks";
 import { useGlobalStore } from "../store/useGlobalStore";
 import { useShallow } from "zustand/react/shallow";
 import { v4 as uuidv4 } from "uuid";
@@ -44,7 +43,7 @@ function MessageInput(props) {
 
   const navigate = useNavigate();
 
-  const [submitOnEnter] = useOption("input", "submit-on-enter");
+  const submitOnEnter = true;
 
   const onChange = useCallback(
     (e) => {

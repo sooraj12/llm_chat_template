@@ -1,10 +1,8 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import Helmet from "react-helmet";
 import styled from "@emotion/styled";
-import { Burger, Button } from "@mantine/core";
-import { useSpotlight } from "@mantine/spotlight";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useHotkeys } from "@mantine/hooks";
+import { Burger } from "@mantine/core";
+import { useLocation } from "react-router-dom";
 import { useGlobalStore } from "../store/useGlobalStore";
 import { useShallow } from "zustand/react/shallow";
 
@@ -86,23 +84,11 @@ const HeaderContainer = styled.div`
   }
 `;
 
-function HeaderButton({ icon, onClick, children }) {
-  return (
-    <Button size="xs" variant="subtle" onClick={onClick}>
-      {icon && <i className={"fa fa-" + icon} />}
-      {children && <span>{children}</span>}
-    </Button>
-  );
-}
-
 function Header({ title }) {
-  const navigate = useNavigate();
-  const spotlight = useSpotlight();
-  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
 
-  const { sidebarOpen, toggleSidebar, setTab } = useGlobalStore(
+  const { sidebarOpen, toggleSidebar } = useGlobalStore(
     useShallow((state) => ({
       sidebarOpen: state.sidebar.open,
       toggleSidebar: state.sidebar.toggleSidebar,
@@ -114,25 +100,12 @@ function Header({ title }) {
 
   const burgerLabel = sidebarOpen ? "Close sidebar" : "Open sidebar";
 
-  const onNewChat = useCallback(async () => {
-    setLoading(true);
-    navigate(`/`);
-    setLoading(false);
-    setTimeout(() => document.querySelector("#message-input")?.focus(), 100);
-  }, [navigate]);
-
-  const openSettings = useCallback(() => {
-    setTab("chat");
-  }, [setTab]);
-
-  useHotkeys([["n", onNewChat]]);
-
   return (
-    <HeaderContainer className={isHome ? "shaded" : ""}>
+    <HeaderContainer>
       <Helmet>
         <title>
           {title ? `${title} - ` : ""}
-          Chat
+          Local Chat
         </title>
       </Helmet>
       {!sidebarOpen && (
@@ -143,18 +116,8 @@ function Header({ title }) {
           transitionDuration={0}
         />
       )}
-      {isHome || !title ? <h2>Chat</h2> : <h2>{title}</h2>}
+      {isHome || !title ? <h2>Local Chat</h2> : <h2>{title}</h2>}
       <div className="spacer" />
-      <HeaderButton icon="search" onClick={spotlight.openSpotlight} />
-      <HeaderButton icon="gear" onClick={openSettings} />
-      <HeaderButton
-        icon="plus"
-        onClick={onNewChat}
-        loading={loading}
-        variant="light"
-      >
-        New Chat
-      </HeaderButton>
     </HeaderContainer>
   );
 }

@@ -1,9 +1,7 @@
 import React, { Suspense, useCallback } from "react";
 import styled from "@emotion/styled";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
-import { useOption } from "../../hooks";
 import { Page } from "../Page";
 import { Message } from "../Message";
 import { useGlobalStore } from "../../store/useGlobalStore";
@@ -33,7 +31,6 @@ const EmptyMessage = styled.div`
 `;
 
 function ChatPage() {
-  const { id } = useParams();
   const { activeChat, generating } = useGlobalStore(
     useShallow((state) => ({
       activeChat: state.chats.activeChat,
@@ -41,17 +38,8 @@ function ChatPage() {
     }))
   );
 
-  const [autoScrollWhenOpeningChat] = useOption(
-    "auto-scroll",
-    "auto-scroll-when-opening-chat"
-  );
-  const [autoScrollWhileGenerating] = useOption(
-    "auto-scroll",
-    "auto-scroll-while-generating"
-  );
-
   useEffect(() => {
-    const shouldScroll = autoScrollWhenOpeningChat;
+    const shouldScroll = true;
 
     if (!shouldScroll) {
       return;
@@ -67,15 +55,15 @@ function ChatPage() {
         container?.scrollTo({ top: offset, behavior: "smooth" });
       }, 100);
     }
-  }, [autoScrollWhenOpeningChat]);
+  }, []);
 
   const autoScroll = useCallback(() => {
-    if (generating && autoScrollWhileGenerating) {
+    if (generating) {
       const container = document.querySelector("#messages");
       container?.scrollTo({ top: 999999, behavior: "smooth" });
       container?.parentElement?.scrollTo({ top: 999999, behavior: "smooth" });
     }
-  }, [generating, autoScrollWhileGenerating]);
+  }, [generating]);
 
   useEffect(() => {
     const timer = setInterval(() => autoScroll(), 1000);
@@ -86,7 +74,7 @@ function ChatPage() {
 
   return (
     <Page
-      id={id || "landing"}
+      id={"landing"}
       headerProps={{
         title: activeChat.title,
       }}
@@ -105,7 +93,7 @@ function ChatPage() {
             <div style={{ paddingBottom: "4.5rem" }}>
               {activeChat.history.map((message, i) => (
                 <Message
-                  key={id + ":" + message.id}
+                  key={message.id}
                   message={message}
                   last={i === activeChat.history.length - 1}
                 />
