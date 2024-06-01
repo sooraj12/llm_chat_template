@@ -1,10 +1,6 @@
-import { useCallback } from "react";
 import Helmet from "react-helmet";
 import styled from "@emotion/styled";
 import { Burger } from "@mantine/core";
-import { useLocation } from "react-router-dom";
-import { useGlobalStore } from "../store/useGlobalStore";
-import { useShallow } from "zustand/react/shallow";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -84,39 +80,16 @@ const HeaderContainer = styled.div`
   }
 `;
 
-function Header({ title }) {
-  const location = useLocation();
-  const isHome = location.pathname === "/";
-
-  const { sidebarOpen, toggleSidebar } = useGlobalStore(
-    useShallow((state) => ({
-      sidebarOpen: state.sidebar.open,
-      toggleSidebar: state.sidebar.toggleSidebar,
-      setTab: state.settings.setTab,
-    }))
-  );
-
-  const onBurgerClick = useCallback(() => toggleSidebar(), [toggleSidebar]);
-
-  const burgerLabel = sidebarOpen ? "Close sidebar" : "Open sidebar";
+function Header() {
+  const burgerLabel = false ? "Close sidebar" : "Open sidebar";
 
   return (
     <HeaderContainer>
       <Helmet>
-        <title>
-          {title ? `${title} - ` : ""}
-          Local Chat
-        </title>
+        <title>Local Chat</title>
       </Helmet>
-      {!sidebarOpen && (
-        <Burger
-          opened={sidebarOpen}
-          onClick={onBurgerClick}
-          aria-label={burgerLabel}
-          transitionDuration={0}
-        />
-      )}
-      {isHome || !title ? <h2>Local Chat</h2> : <h2>{title}</h2>}
+      <Burger opened={false} aria-label={burgerLabel} transitionDuration={0} />
+      <h2>Local Chat</h2>
       <div className="spacer" />
     </HeaderContainer>
   );
