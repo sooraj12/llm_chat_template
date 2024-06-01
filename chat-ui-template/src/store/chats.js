@@ -97,7 +97,7 @@ const chatsStore = (set, get) => ({
 
     async getReply(msg, replyId) {
       try {
-        await fetchEventSource("http://localhost:8081/api/generate", {
+        await fetchEventSource("/local_api/generate", {
           method: "POST",
           headers: {
             Accept: "text/event-stream",

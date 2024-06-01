@@ -36,11 +36,10 @@
     "zustand": "^4.5.2"
   },
   "scripts": {
-    "start": "PUBLIC_URL='/chat' react-scripts start",
-    "build": "PUBLIC_URL='/chat' react-scripts build",
+    "start": "PUBLIC_URL='/local_chat' react-scripts start",
+    "build": "PUBLIC_URL='/local_chat' react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start:backend": "nodemon server.js"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

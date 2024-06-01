@@ -12,7 +12,7 @@ RUN npm run build
 
 FROM nginx:1.25.5-alpine
 
-COPY --from=builder /usr/src/app/build /usr/share/nginx/html/chat
+COPY --from=builder /usr/src/app/build /usr/share/nginx/html/local_chat
 
 EXPOSE 80
 

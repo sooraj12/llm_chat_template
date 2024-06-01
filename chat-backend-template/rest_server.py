@@ -43,7 +43,7 @@ def create_generator(query):
         yield "data: " + event.content + "\n\n"
 
 
-@server.post("/api/generate")
+@server.post("/local_api/generate")
 async def chat(data: Data):
     return StreamingResponse(
         create_generator(data.query), media_type="text/event-stream"
@@ -53,4 +53,4 @@ async def chat(data: Data):
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app=server, host="0.0.0.0", port=8081)
+    uvicorn.run(app=server, host="0.0.0.0", port=8080)

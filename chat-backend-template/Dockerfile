@@ -22,8 +22,6 @@ COPY . .
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-EXPOSE 8081
-
 # Set the entrypoint and command to run the app
 ENTRYPOINT [ "/venv/bin/python" ]
 CMD [ "rest_server.py" ]
